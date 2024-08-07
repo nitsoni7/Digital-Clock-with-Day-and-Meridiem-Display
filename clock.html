@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #eee;
+        }
+
+        h1 {
+            font-size: 100px;
+            display: inline-block;
+            padding: 50px 70px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 10px 10px 16px -2px #d5d5d5,
+                inset 15px 15px 16px -2px #d5d5d5;
+            text-shadow: 2.5px 2.5px 0px #949494,
+                5px 5px 0px #dbdbdb;
+            position: relative;
+        }
+
+        h1>span {
+            text-transform: uppercase;
+            position: absolute;
+            font-size: 12px;
+            top: 20px;
+            right: 20px;
+            text-shadow: none;
+        }
+
+        h1>sub {
+            text-transform: uppercase;
+            position: absolute;
+            font-size: 12px;
+            bottom: 60px;
+            right: 50px;
+            text-shadow: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="clock">
+        <p></p>
+        <sub></sub>
+        <span></span>
+    </h1>
+
+    <script>
+        function clock() {
+            const date = new Date();
+            const dateArr = date.toDateString().split(" ");
+            const day = dateArr[0];
+            const timeArr = date.toLocaleTimeString().split(" ");
+            const time = timeArr[0];
+            const meridiem = timeArr[1];
+
+            const clockTime = document.querySelector("#clock p");
+            const clockMeridiem = document.querySelector("#clock sub");
+            const clockDay = document.querySelector("#clock span");
+            clockTime.innerHTML = time;
+            clockMeridiem.innerHTML = meridiem;
+            clockDay.innerHTML = day;
+        }
+        window.onload = function () {
+            clock();
+            setInterval(clock, 1000);
+        }
+    </script>
+</body>
+
+</html>
